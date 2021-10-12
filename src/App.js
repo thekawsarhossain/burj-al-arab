@@ -10,6 +10,8 @@ import Login from './components/Login/Login';
 import Book from './components/Book/Book';
 import Header from './components/Header/Header';
 import AuthProvider from './Firebase/AuthProvider';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import BookRoom from './components/BookRoom/BookRoom';
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <PrivateRoute>
+            <BookRoom></BookRoom>
+          </PrivateRoute>
           <Route path="/book/:bedType">
             <Book />
           </Route>
