@@ -21,11 +21,7 @@ const useFirebase = () => {
 
     // signin using github
     const gitHubSignIn = () => {
-        signInWithPopup(auth, gitHubProvider)
-            .then(result => {
-                setUser(result.user)
-            })
-            .catch(error => setError(error))
+        return signInWithPopup(auth, gitHubProvider)
     }
 
     // user data 

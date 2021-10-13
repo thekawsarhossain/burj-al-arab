@@ -20,13 +20,21 @@ const Login = () => {
             .catch(error => setError(error.message))
     }
 
+    const handleGitHubSignIn = () => {
+        gitHubSignIn()
+            .then(result => {
+                histroy.push(redirect_uri);
+            })
+            .catch(error => setError(error.message));
+    }
+
     return (
         <div className="login-container">
             <h1>Please Login here !</h1>
             <Button onClick={handleGoogleSignIn} variant="contained" color="primary">
                 Google Signin
             </Button>
-            <Button onClick={gitHubSignIn} variant="contained" color="secondary">
+            <Button onClick={handleGitHubSignIn} variant="contained" color="secondary">
                 GitHub Signin
             </Button>
             <Typography color="red">{error}</Typography>
