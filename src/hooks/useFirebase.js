@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 import initializeAuthentication from '../Firebase/firebase.init';
+import { useHistory, useLocation } from 'react-router';
 
 initializeAuthentication();
 
 const useFirebase = () => {
+
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
     const gitHubProvider = new GithubAuthProvider();
@@ -14,12 +16,7 @@ const useFirebase = () => {
 
     // google sign in handler 
     const googleSignIn = () => {
-        signInWithPopup(auth, googleProvider)
-            .then(result => {
-                const userInfo = result.user;
-                setUser(userInfo);
-            })
-            .catch(error => setError(error.message))
+        return signInWithPopup(auth, googleProvider)
     }
 
     // signin using github
@@ -52,6 +49,7 @@ const useFirebase = () => {
     return {
         user,
         error,
+        setError,
         googleSignIn,
         gitHubSignIn,
         signOutHandler
